@@ -47,7 +47,7 @@ db.fantasia.insertOne({
 "autor": "Tolkien",
 "titulo": "El señor de los anillos"
 })
--- Insertr varios objetos
+-- Insertar varios objetos
 db.fantasia.insertMany(
 { 
 "autor": "Tolkien",
