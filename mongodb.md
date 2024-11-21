@@ -18,6 +18,8 @@ sudo apt-get install -y mongodb-org
 ```bash
 sudo systemctl start mongod.service
 ```
+
+**Iniciar el servidor cuando arranquemos el equipo**:
 ```bash
 sudo systemctl enable mongod.service
 ```
@@ -26,61 +28,74 @@ sudo systemctl enable mongod.service
 ```bash
 sudo systemctl stop mongod.service 
 ```
+
+****
 ```bash
 sudo systemctl disable mongod.service
 ```
 
-**Ver si el servidor está activo**:
+**Reiniciar el servidor**:
+```bash
+sudo systemctl restart mongod.service
+```
+
+**Ver si el estado del servidor**:
 ```bash
 sudo systemctl status mongod.service
 ```
+
 **Para empezar**:
 ```bash
 mongosh 
 ```
 
 ## 
-**Ejemplo con libros**:
+**Ejemplo**:
 
-```mongodb
-
+```bash
 use libros
 
-db.`+ tab`
-
--- Crear una collecion
+-- Crear una colección
 db.createCollection("fantasia")
 
--- Obtener los nombres de las colleciones
+-- Obtener los nombres de las colecciones
 db.getCollectionNames()
 
--- Insertar un objeto 
+-- Insertar un objeto en la colección "fantasia"
 db.fantasia.insertOne({ 
-"autor": "Tolkien",
-"titulo": "El señor de los anillos"
+  "autor": "Tolkien",
+  "titulo": "El señor de los anillos"
 })
--- Insertr varios objetos
-db.fantasia.insertMany(
-{ 
-"autor": "Tolkien",
-"titulo": "El señor de los anillos"
-},
-{ 
-"autor": "Brandon Sanderson",
-"titulo": "El hombre iluminado"
-}
 
+-- Insertar varios objetos en la colección "fantasia"
+db.fantasia.insertMany([
+  { 
+    "autor": "Tolkien",
+    "titulo": "El señor de los anillos"
+  },
+  { 
+    "autor": "Brandon Sanderson",
+    "titulo": "El hombre iluminado"
+  }
+])
+
+-- Buscar documentos dentro de la colección "fantasia" con un filtro
+db.fantasia.find({ "autor": "Tolkien" })
+
+-- Actualizar un objeto en la colección "fantasia"
+db.fantasia.updateOne(
+  { "titulo": "El trono de cristal" },
+  { $set: { "titulo": "El trono de cristal" } }
 )
 
--- Buscar algo dentro del objeto
-db.fantasia.find({ "autor": "Tolkien" } )
+-- Refactorizar el campo `nombre` a `name` en la colección `usuarios`
+db.usuarios.updateMany(
+  {},
+  { $rename: { "nombre": "name" } }
+)
 
--- Actualizar un objeto
-db.fantasia.updateOne({"titulo":"EL trono de cristal"},
- {$set: {"titulo":"El trono de cristal"}})
-
--- Borrar un objeto
-db.fantasia.deleteOne({"titulo":"El trono de cristal"})
+-- Borrar un documento de la colección "fantasia"
+db.fantasia.deleteOne({ "titulo": "El trono de cristal" })
 
 -- Borrar la base de datos
 db.dropDatabase()
