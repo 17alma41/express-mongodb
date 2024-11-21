@@ -15,11 +15,23 @@ sudo apt-get install -y mongodb-org
 # Iniciar MongoDB
 
 **Iniciarlo**:
-sudo systemctl start mongod.service 
+```bash
+sudo systemctl start mongod.service
+```
+
+**Pararlo**:
+```bash
+sudo systemctl stop mongod.service 
+```
+
 **Ver si el servidor está activo**:
-sudo systemctl status mongod.service 
+```bash
+sudo systemctl status mongod.service
+```
 **Para empezar**:
+```bash
 mongosh 
+```
 
 ## 
 **Ejemplo con libros**:
