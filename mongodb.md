@@ -18,10 +18,16 @@ sudo apt-get install -y mongodb-org
 ```bash
 sudo systemctl start mongod.service
 ```
+```bash
+sudo systemctl enable mongod.service
+```
 
 **Pararlo**:
 ```bash
 sudo systemctl stop mongod.service 
+```
+```bash
+sudo systemctl disable mongod.service
 ```
 
 **Ver si el servidor está activo**:
@@ -42,7 +48,7 @@ use libros
 
 db.`+ tab`
 
--- Crear una collecion, de libros en este caso
+-- Crear una collecion
 db.createCollection("fantasia")
 
 -- Obtener los nombres de las colleciones
