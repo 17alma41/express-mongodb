@@ -39,7 +39,7 @@ sudo systemctl disable mongod.service
 sudo systemctl restart mongod.service
 ```
 
-**Ver si el estado del servidor**:
+**Ver el estado del servidor**:
 ```bash
 sudo systemctl status mongod.service
 ```
